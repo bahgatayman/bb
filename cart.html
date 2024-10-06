@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Afacad+Flux:wght@100..1000&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles/index.css">
+  <title>Cart</title>
+
+  <style>
+    *{
+    box-sizing: border-box;
+    /* border: solid 1px blue; */
+    background-color: #333;
+    box-sizing: border-box;
+    text-decoration: none;
+    outline: none;
+    border: none;
+    margin: 0;
+    padding: 0;
+    text-transform: capitalize;
+    transition: all 0.2s linear;
+    font-family: "Afacad Flux", sans-serif;
+    }
+    .cart-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly; 
+    margin-top: 50px;
+    /* margin-block-start: 50px; */
+    gap: 20px;
+}
+
+.cart-item {
+    /* border: 1px solid #ddd; */
+    /* padding: 10px; */
+    width: 300px;
+    text-align: center;
+    color: white;
+}
+
+
+.cart-item img {
+    max-width: 100%;
+    width: 200px;
+    height: 200px;
+    /* height: auto; */
+    transition: transform 0.8s ease;
+}
+.cart-item img:hover {
+            transform: rotate(10deg); 
+        }
+
+        .cart-item h3 {
+    font-size: 25px;
+}
+.remove-button {
+    margin-top: 10px;
+    background-color: transparent;
+    background-color: #ff4d4d; 
+    border: 1px white solid;
+    color: white; 
+    width: 150px;
+    border-radius: 5px; 
+    padding: 10px 15px; 
+    cursor: pointer; 
+    transition: background-color 0.3s; 
+}
+
+.remove-button:hover {
+    background-color: #ff1a1a; 
+}
+
+  </style>
+</head>
+<body>
+
+    <header class="header">
+        <div id="menu-btn" class="fas fa-bars" aria-label="Menu"></div>
+        <nav class="navbar">
+          <a href="home.html">Home</a>
+          <a href="#menu">Menu</a>
+          <a href="#about">About Us</a>
+          <span class="space"></span>
+          <a href="#reviews">Reviews</a>
+          <a href="#contact">Contact Us</a>
+          <a href="#team">Our Team</a>
+        </nav>
+    
+        <a href="cart.html" class="fas fa-shopping-cart icons" aria-label="Shopping Cart" style="margin-right: 20px;"></a>
+        <a href="#home" class="logo"><img src="./img/logo.png" alt="Company Logo"></a>
+    </header>
+<!-- //////////////////////////////////////////////////////// -->
+  <center><h1 style="color: white;">Your Cart</h1></center>
+  <section class="cart-container" id="cart-container"></section>
+
+  <h2 id="total-price">Total Price: $0.00</h2>
+
+  <script>
+    // استرداد المنتجات من Local Storage
+    const cartItems = JSON.parse(localStorage.getItem('cart')) || [];
+    const cartContainer = document.getElementById('cart-container');
+    let totalPrice = 0; // متغير لتخزين مجموع السعر
+
+    // إضافة كل منتج إلى صفحة السلة
+    cartItems.forEach((item, index) => {
+        const cartItem = document.createElement('div');
+        cartItem.className = 'cart-item';
+        cartItem.innerHTML = `
+            <img src="${item.image}" alt="${item.name}">
+            <h3>${item.name}</h3>
+            <p class="price">${item.price}</p>
+            <button class="remove-button" data-index="${index}">Remove</button>
+        `;
+        cartContainer.appendChild(cartItem);
+        
+        // إضافة سعر المنتج إلى مجموع السعر
+        const priceValue = parseFloat(item.price.replace('$', '')); // تحويل السعر إلى رقم
+        totalPrice += priceValue; // إضافة السعر إلى مجموع السعر
+    });
+
+    // تحديث واجهة المستخدم لمجموع السعر
+    document.getElementById('total-price').innerText = `Total Price: $${totalPrice.toFixed(2)}`;
+
+    // إذا كانت السلة فارغة، يمكن عرض رسالة للمستخدم
+    if (cartItems.length === 0) {
+        const emptyMessage = document.createElement('p');
+        emptyMessage.innerText = 'Your cart is empty. Add items to your cart!';
+        cartContainer.appendChild(emptyMessage);
+    }
+
+    cartContainer.addEventListener('click', function(e) {
+        if (e.target.classList.contains('remove-button')) {
+            const index = e.target.dataset.index; 
+            cartItems.splice(index, 1); 
+
+            localStorage.setItem('cart', JSON.stringify(cartItems));
+
+
+            location.reload();
+        }
+    });
+  </script>
+      <script src="https://kit.fontawesome.com/eacd7730a7.js" crossorigin="anonymous"></script>
+  <script src="index.js"></script>
+</body>
+</html>

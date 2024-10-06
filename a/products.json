@@ -1,0 +1,42 @@
+{
+    "products": [
+      {
+        "id": 1,
+        "name": "Classic Burger",
+        "price": 5.99,
+        "image": "https://png.pngtree.com/png-vector/20230922/ourmid/pngtree-burger-png-images-png-image_10146426.png"
+        
+      },
+      {
+        "id": 2,
+        "name": "Cheese Burger",
+        "price": 6.99,
+        "image": "https://png.pngtree.com/png-clipart/20230326/ourmid/pngtree-isolated-burger-on-transparent-background-png-image_6669724.png"
+      },
+      {
+        "id": 3,
+        "name": "BBQ Burger",
+        "price": 7.99,
+        "image": "https://png.pngtree.com/png-vector/20230922/ourmid/pngtree-burger-png-images-png-image_10146426.png"
+      },
+      {
+        "id": 4,
+        "name": "Veggie Burger",
+        "price": 4.99,
+        "image": "https://png.pngtree.com/png-vector/20230922/ourmid/pngtree-burger-png-images-png-image_10146426.png"
+      },
+      {
+        "id": 4,
+        "name": "Veggie Burger",
+        "price": 4.99,
+        "image": "https://png.pngtree.com/png-vector/20230922/ourmid/pngtree-burger-png-images-png-image_10146426.png"
+      },
+      {
+        "id": 4,
+        "name": "Veggie Burger",
+        "price": 4.99,
+        "image": "https://png.pngtree.com/png-vector/20230922/ourmid/pngtree-burger-png-images-png-image_10146426.png"
+      }
+    ]
+  }
+  
